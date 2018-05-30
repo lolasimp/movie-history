@@ -1,4 +1,4 @@
-const domString = (movieArray,config) => {
+const domString = (movieArray, config, whereToPrint) => {
   let strang = '';
   movieArray.forEach((movie, index) => {
     if (index % 3 === 0) {
@@ -8,7 +8,7 @@ const domString = (movieArray,config) => {
     strang +=  `<div class="thumbnail movie">`;
     strang +=   `<img data-poster="${movie.poster_path}" src="${config.base_url}/w342/${movie.poster_path}" alt="Movie Poster">`;
     strang +=    `<div class="caption">`;
-    strang +=    `<h3 class="movie-title">${movie.original_title}</h3>`;
+    strang +=    `<h3 class="movie-title">${movie.original_title ? movie.original_title : movie.title}</h3>`;
     strang +=  `<p class="movie-overview">${movie.overview}</p>`;
     strang +=    `<p><a href="#" class="btn btn-primary" role="button">Review</a> <a  class="btn btn-default addMovieToWishList" role="button">Wishlist</a></p>`;
     strang +=     `</div>`;
@@ -19,11 +19,11 @@ const domString = (movieArray,config) => {
       strang += `</div>`;
     }
   });
-  printToDom(strang);
+  printToDom(whereToPrint, strang);
 };
 
-const printToDom = (strang) => {
-  $('#movies').append(strang);
+const printToDom = (whereToPrint, strang) => {
+  $(`#${whereToPrint}`).append(strang);
 };
 
 module.exports = {
