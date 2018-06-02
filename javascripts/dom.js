@@ -5,7 +5,9 @@ const domString = (movieArray, config, whereToPrint, myCollectionMode = false) =
       strang += `<div class="row">`;
     }
     strang += `<div class="col-sm-6 col-md-4">`;
-    strang +=  `<div class="thumbnail movie">`;
+    // when creating delete firebase  since id was found just add movie.id
+    // need event to target firebase config and dom
+    strang +=  `<div class="thumbnail movie" data-firebase-id="${movie.id}">`;
     if (myCollectionMode) {
       strang += `<a class ="btn deleteMovie">X</a>`;
     }
@@ -32,7 +34,7 @@ const domString = (movieArray, config, whereToPrint, myCollectionMode = false) =
 };
 
 const printToDom = (whereToPrint, strang) => {
-  $(`#${whereToPrint}`).append(strang);
+  $(`#${whereToPrint}`).html(strang);
 };
 
 module.exports = {
