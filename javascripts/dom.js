@@ -20,7 +20,7 @@ const domString = (movieArray, config, whereToPrint, myCollectionMode = false) =
     } else if (myCollectionMode && !movie.isWatched) {
       strang += `<a class="btn btn-primary updateMovieToWatched" role="button">I've Watched It</a>`;
     } else {
-      strang += `<p>I'm goning to put star srating here one day.</p>`;
+      strang += `<p>I'm going to put star here one day.</p>`;
     }
     strang +=     `</div>`;
     strang +=    `</div>`;

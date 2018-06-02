@@ -64,6 +64,7 @@ const getAllMoviesEvent = () => {
 
 const deleteMoviesFromFirebase = () => {
   $(document).on('click', '.deleteMovie',(e) => {
+    // can use in updatedMovieEvent for getting id
     const movieToDeleteId = $(e.target).closest('.movie').data('firebaseId');
     firebaseApi.deleteMovieFromDb(movieToDeleteId)
       .then(() => {
@@ -75,11 +76,34 @@ const deleteMoviesFromFirebase = () => {
   });
 };
 
+const updateMovieEvent = () => {
+  $(document).on('click', '.updateMovieToWatched', (e) => {
+    const movieToUpdateId = $(e.target).closest('.movie').data('firebaseId');
+    // const updateMovie =
+    const movieToUpdateCard = $(e.target).closest('.movie');
+    const updatedMovie = {
+      title: movieToUpdateCard.find('.movie-title').text(),
+      overview: movieToUpdateCard.find('movie-overview').text(),
+      'poster_path': movieToUpdateCard.find('img').data('poster'),
+      rating: 0,
+      isWatched: true,
+    };
+    firebaseApi.updateMovieToWatchedInDb(updatedMovie, movieToUpdateId)
+      .then(() => {
+        getAllMoviesEvent();
+      })
+      .catch((error) => {
+        console.error('error in update movie', error);
+      });
+  });
+};
+
 const initializer = () => {
   myLinks();
   pressEnter();
   saveMovieToWishListEvent();
   deleteMoviesFromFirebase();
+  updateMovieEvent();
 };
 
 module.exports = {
