@@ -62,6 +62,26 @@ const getAllMoviesEvent = () => {
     });
 };
 
+const getWatchedMoviesEvent = () => {
+  firebaseApi.getWatchedMovies()
+    .then((moviesArray) => {
+      dom.domString(moviesArray, tmdb.getImageConfig(), 'savedMovies', true);
+    })
+    .catch((error) => {
+      console.error('error in get watched Movies', error);
+    });
+};
+
+const getWishlistmoviesEvent = () => {
+  firebaseApi.getWishlistMovies()
+    .then((moviesArray) => {
+      dom.domString(moviesArray, tmdb.getImageConfig(), 'savedMovies', true);
+    })
+    .catch((error) => {
+      console.error('error in get all Movies', error);
+    });
+};
+
 const deleteMoviesFromFirebase = () => {
   $(document).on('click', '.deleteMovie',(e) => {
     // can use in updatedMovieEvent for getting id
@@ -98,12 +118,28 @@ const updateMovieEvent = () => {
   });
 };
 
+const filterEvents = () => {
+  $('#filteredButtons').on('click', (e) => {
+    const classList = e.target.classList;
+    if (classList.contains('wishlist')) {
+      // show only isWatched: false
+      getWishlistmoviesEvent();
+    } else if (classList.contains('watched')) {
+      // show only isWatched: true
+      getWatchedMoviesEvent();
+    } else {
+      getAllMoviesEvent();
+    }
+  });
+};
+
 const initializer = () => {
   myLinks();
   pressEnter();
   saveMovieToWishListEvent();
   deleteMoviesFromFirebase();
   updateMovieEvent();
+  filterEvents();
 };
 
 module.exports = {
