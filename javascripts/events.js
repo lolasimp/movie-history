@@ -83,7 +83,7 @@ const getWishlistmoviesEvent = () => {
 };
 
 const deleteMoviesFromFirebase = () => {
-  $(document).on('click', '.deleteMovie',(e) => {
+  $(document).on('click', '.deleteMovie', (e) => {
     // can use in updatedMovieEvent for getting id
     const movieToDeleteId = $(e.target).closest('.movie').data('firebaseId');
     firebaseApi.deleteMovieFromDb(movieToDeleteId)
@@ -139,26 +139,29 @@ const authEvents = () => {
     const email = $('#inputEmail').val();
     const pass = $('#inputPassword').val();
     firebase.auth().signInWithEmailAndPassword(email, pass)
-      .then((user) => {
-        $('#myMovies').removeClass('hide');
-        $('#search').addClass('hide');
-        $('#authScreen').addClass('hide');
-        // call the getMovies Event
-        getAllMoviesEvent();
-      })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
         console.error('error auth', error);
       });
   });
+
   $('#register-link').click(() => {
     $('#login-form').addClass('hide');
     $('#registration-form').removeClass('hide');
   });
+
   $('#signin-link').click(() => {
     $('#login-form').removeClass('hide');
     $('#registration-form').addClass('hide');
+  });
+
+  $('#logout').click(() => {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful.
+    })
+      .catch(function (error) {
+        console.error('logout error', error);
+        // An error happened.
+      });
   });
 };
 
@@ -174,4 +177,5 @@ const initializer = () => {
 
 module.exports = {
   initializer,
+  getAllMoviesEvent,
 };

@@ -33,10 +33,13 @@
             <a id="authenticate">Authentication</a>
           </li>
           <li>
-            <a id="mine">My Movies</a>
+            <a class="hide" id="mine">My Movies</a>
           </li>
           <li>
-            <a id="navSearch">Search</a>
+            <a class="hide" id="navSearch">Search</a>
+          </li>
+          <li>
+              <a class="hide" id="logout">Logout</a>
           </li>
         </ul>
       </div>
@@ -112,8 +115,8 @@
     </div>
     <div id="savedMovies"></div>
   </div>
-  <div class="hide" id="search">
-    <h1 class="text-center">Search Movies</h1>
+  <div class="hide text-center" id="search">
+    <h1>Search Movies</h1>
     <div class="input-group col-sm-6 col-sm-offset-3">
         <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
         <input id="searchBar" type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon1">
