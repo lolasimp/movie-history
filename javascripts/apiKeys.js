@@ -21,6 +21,15 @@ const retrieveKeys = () => {
       tmdb.setKey(results.tmdb.apiKeys);
       firebaseApi.setConfig(results.firebase);
       firebase.initializeApp(results.firebase);
+      // HARDCORE login, take from auth event in events.js
+      // firebase
+      // .auth()
+      // .signInWithEmailAndPassword('lolalsimp@gmail.com', '123456')
+      // .catch((error) => {
+      //   $('#signin-error-msg').text(error.message);
+      //   $('#signin-error').removeClass('hide');
+      //   console.error('error auth', error);
+      // });
       checkLoginStatus();
     })
     .catch((err) => {
