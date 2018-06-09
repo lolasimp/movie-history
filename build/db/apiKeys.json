@@ -1,0 +1,15 @@
+{
+"apiKeys": {
+  "tmdb": {
+    "apiKeys":"6c4f336d4ed9ed715aab8bea729b07ff"
+  },
+    "firebase": {
+      "apiKey": "AIzaSyAfTQh2f70iBwN51H33cvltE32hgjmP9Ug",
+        "authDomain": "movie-history-a2bb9.firebaseapp.com",
+        "databaseURL": "https://movie-history-a2bb9.firebaseio.com",
+        "projectId": "movie-history-a2bb9",
+        "storageBucket": "movie-history-a2bb9.appspot.com",
+        "messagingSenderId": "578825902232"
+  }
+ }
+}
